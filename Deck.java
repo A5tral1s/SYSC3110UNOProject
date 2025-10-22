@@ -5,10 +5,14 @@ public class Deck {
     private ArrayList<Card> cards;   // cards where you draw from
     private ArrayList<Card> discards;   // cards that have already been played
 
+    public static final int DUPLICATE = 2;
     public static final int MAX_COLOURS = 4;
     public static final int MAX_RANK = 9;
 
+    //Colour type
     public static final int ALL_TYPE = 4;
+
+    //Card type
     public static final int NUMBER_TYPE = 0;
     public static final int SKIP_TYPE = 1;
     public static final int ONE_TYPE = 2;
@@ -28,25 +32,26 @@ public class Deck {
     //Build the full deck of cards.
     private void createDeck(){
 
-        //EDIT: adjust range, right now just one of each
-
         // for each colour
         for(int colour = 0; colour < MAX_COLOURS; colour++){
-            
-            // create cards 0 to 9 (number type)
-            for(int rank = 0; rank <= MAX_RANK; rank++){
-                cards.add(new Card(colour, NUMBER_TYPE, rank));   
-            }
+            for(int i = 0; i < DUPLICATE; i++){
+                // create cards 1 to 9 (number type)
+                for(int rank = 1; rank <= MAX_RANK; rank++){
+                    cards.add(new Card(colour, NUMBER_TYPE, rank));   
+                }
 
-            // add special cards
-            cards.add(new Card(colour, SKIP_TYPE, NO_RANK));
-            cards.add(new Card(colour, ONE_TYPE, NO_RANK));
-            cards.add(new Card(colour, REVERSE_TYPE, NO_RANK)); 
+                // add special cards
+                cards.add(new Card(colour, SKIP_TYPE, NO_RANK));
+                cards.add(new Card(colour, ONE_TYPE, NO_RANK));
+                cards.add(new Card(colour, REVERSE_TYPE, NO_RANK)); 
+            }
         }
 
         // add wild cards
-        cards.add(new Card(ALL_TYPE, WILD_TYPE, NO_RANK));
-        cards.add(new Card(ALL_TYPE, WILDTWO_TYPE, NO_RANK)); 
+        for(int i = 0; i < (DUPLICATE*DUPLICATE); i++){
+            cards.add(new Card(ALL_TYPE, WILD_TYPE, NO_RANK));
+            cards.add(new Card(ALL_TYPE, WILDTWO_TYPE, NO_RANK)); 
+        }
     }
 
     //Shuffle the deck of cards.
