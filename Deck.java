@@ -70,9 +70,9 @@ public class Deck {
     public Card drawCard(){
         if(cards.isEmpty()){
             reshuffleDiscards();
-        } else {
-            return cards.remove(0);
         }
+        return cards.remove(0);
+
     }
 
     //Adds a card to the pile of discards
