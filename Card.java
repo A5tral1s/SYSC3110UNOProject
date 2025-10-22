@@ -45,7 +45,7 @@ public class Card {
     }
 
     public String getDescription(){
-        if(this.getRank()==-1){
+        if(this.getRank()==Deck.NO_RANK){
             return this.getColor() +  " " + this.getType();
         }
         return this.getColor() +  " " + this.getRank();
