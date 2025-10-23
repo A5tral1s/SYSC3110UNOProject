@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Player {
@@ -8,6 +9,9 @@ public class Player {
     private List<Card> hand;
 
     public Player(String name, Deck deck){
+        if(name==null){
+            throw new IllegalArgumentException("Player name cannot be empty.");
+        }
         this.name = name;
         score = 0;
         hand = new ArrayList<Card>();
@@ -21,22 +25,38 @@ public class Player {
     public int getScore(){return score;}
 
     public int increaseScore(int add){
+        if(add < 0){throw new IllegalArgumentException("Score increment must be >= 0");}
         score += add;
         return score;
     }
 
+    public List<Card> getHand(){
+        return Collections.unmodifiableList(hand);
+    }
 
-    public void printHand(){
-        System.out.println(name +" cards:");
-        for(int i=1; i<=7; i++){
-            System.out.println(i + ": " + hand.get(i-1).getDescription());
+    public void addCard(Card card){
+        hand.add(card);
+    }
+
+    public Card removeCard(int i){
+        return hand.remove(i-1);
+    }
+
+
+    public String getHandDescription(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(name).append("'s cards: ").append("\n");
+        if(hand.isEmpty()) return "empty";
+        for(int i=1; i<=hand.size(); i++){
+            sb.append(i).append(": ").append(hand.get(i-1).getDescription()).append("\n");
         }
+        return sb.toString();
     }
 
     public static void main(String[] args) {
         Deck d = new Deck();
         Player p1 = new Player("me", d);
-        p1.printHand();
+        System.out.println(p1.getHandDescription());
     }
 
 
