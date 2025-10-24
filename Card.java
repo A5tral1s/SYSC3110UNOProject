@@ -10,18 +10,18 @@ public class Card {
     public enum cardtype{
         NUMBER,
         SKIP,
-        ONE,
+        DRAW_ONE,
         REVERSE,
         WILD,
         WILDTWO
     }
 
-    public colortype col;
-    public cardtype type;
-    public int rank;
+    private colortype col;
+    private cardtype type;
+    private int rank;
 
     public Card(int color, int type, int rank){
-        if(type == 5 || type == 6){
+        if(type == 5 || type == 6){ //****NO 6? THIS WOULD CAUSE INDEXOUTOFBOUNDS
             this.type = cardtype.values()[type];
             this.col = colortype.values()[4];
         }
