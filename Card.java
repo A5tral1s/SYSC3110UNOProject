@@ -12,6 +12,7 @@ public class Card {
         SKIP,
         ONE,
         REVERSE,
+        FLIP,
         WILD,
         WILDTWO
     }
