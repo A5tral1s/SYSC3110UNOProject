@@ -142,7 +142,7 @@ public class UnoFlip {
                     dir = -dir;
                     advance(1);
                 }
-            } else if (t == Card.cardtype.ONE) {
+            } else if (t == Card.cardtype.DRAW_ONE) {
                 int victim = peekNextIndex(1);
                 Card d = deck.drawCard();
                 players.get(victim).addCard(d);
