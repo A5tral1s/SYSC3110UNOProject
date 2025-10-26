@@ -32,7 +32,7 @@ public class Player {
         return Collections.unmodifiableList(hand);
     }
 
-    public void draw(Card card){
+    public void addCard(Card card){
         hand.add(card);
     }
 

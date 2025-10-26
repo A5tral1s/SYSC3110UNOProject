@@ -33,7 +33,7 @@ public class UnoFlip {
         // player names
         for (int i = 1; i <= n; i++) {
             System.out.print("Enter a name for player " + i + ": ");
-            players.add(new Player(sc.nextLine().trim(), deck));
+            players.add(new Player(sc.nextLine().trim()));
         }
 
         // deal remaining cards if any player has < 7

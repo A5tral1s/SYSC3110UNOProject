@@ -22,7 +22,7 @@ public class Card {
     private int rank;
 
     public Card(int color, int type, int rank){
-        if(type == 5 || type == 6){ //****NO 6? THIS WOULD CAUSE INDEXOUTOFBOUNDS
+        if(type == 5 || type == 6){
             this.type = cardtype.values()[type];
             this.col = colortype.values()[4];
         }
