@@ -1,5 +1,5 @@
 public class Card {
-    public enum colortype{
+    public enum colortype{ //The four main card colors, plus ALL to represent the WILD cards
         RED,
         BLUE,
         GREEN,
@@ -7,7 +7,7 @@ public class Card {
         ALL
     }
 
-    public enum cardtype{
+    public enum cardtype{ //All the different card types in UnoFlip
         NUMBER,
         SKIP,
         DRAW_ONE,
@@ -22,7 +22,7 @@ public class Card {
     private int rank;
 
     public Card(int color, int type, int rank){
-        if(type == 5 || type == 6){
+        if(type == 5 || type == 6){ //If card type is one of the two Wild cards, set 'color' to ALL
             this.type = cardtype.values()[type];
             this.col = colortype.values()[4];
         }
