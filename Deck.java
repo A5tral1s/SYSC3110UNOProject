@@ -18,8 +18,9 @@ public class Deck {
     public static final int SKIP_TYPE = 1;
     public static final int DRAW_ONE_TYPE = 2;
     public static final int REVERSE_TYPE = 3;
-    public static final int WILD_TYPE = 4;
-    public static final int WILDTWO_TYPE = 5;
+    public static final int FLIP_TYPE = 4;
+    public static final int WILD_TYPE = 5;
+    public static final int WILDTWO_TYPE = 6;
     public static final int NO_RANK = -1;
 
     public Deck(){
