@@ -16,7 +16,7 @@ public class Deck {
     //Card type
     public static final int NUMBER_TYPE = 0;
     public static final int SKIP_TYPE = 1;
-    public static final int ONE_TYPE = 2;
+    public static final int DRAW_ONE_TYPE = 2;
     public static final int REVERSE_TYPE = 3;
     public static final int WILD_TYPE = 4;
     public static final int WILDTWO_TYPE = 5;
@@ -43,7 +43,7 @@ public class Deck {
 
                 // add special cards
                 cards.add(new Card(colour, SKIP_TYPE, NO_RANK));
-                cards.add(new Card(colour, ONE_TYPE, NO_RANK));
+                cards.add(new Card(colour, DRAW_ONE_TYPE, NO_RANK));
                 cards.add(new Card(colour, REVERSE_TYPE, NO_RANK)); 
             }
         }
