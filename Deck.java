@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.Collections; 
+import java.util.ArrayDeque;
 
 public class Deck {
     private ArrayList<Card> cards;   // cards where you draw from
-    private ArrayList<Card> discards;   // cards that have already been played
+    private ArrayDeque<Card> discards;   // cards that have already been played
 
     public static final int DUPLICATE = 2;
     public static final int MAX_COLOURS = 4;
@@ -23,7 +24,7 @@ public class Deck {
 
     public Deck(){
         cards = new ArrayList<>();
-        discards = new ArrayList<>();
+        discards = new ArrayDeque<>();
         
         createDeck();
         shuffle();
@@ -59,10 +60,14 @@ public class Deck {
         Collections.shuffle(cards);
     }
 
-    //When the deck of cards runs out, reshuffle discards to refill the deck
+    //When the deck of cards runs out, reshuffle discards to refill the deck.
     private void reshuffleDiscards(){
+        // save the top card
+        Card topCard = discards.pop();
+
         cards.addAll(discards);
         discards.clear();
+        discards.push(topCard);     // place the top card back on discards     
         shuffle();
     }
 
@@ -75,9 +80,14 @@ public class Deck {
 
     }
 
-    //Adds a card to the pile of discards
+    //Adds a card to the pile of discards.
     public void discard(Card card){
-        discards.add(card);
+        discards.push(card);
+    }
+
+    //Return the top card of the discard pile (the currently played card).
+    public Card topCard(){
+        return discards.peek();
     }
 
 }
