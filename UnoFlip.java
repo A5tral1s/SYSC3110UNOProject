@@ -33,7 +33,7 @@ public class UnoFlip {
         // player names
         for (int i = 1; i <= n; i++) {
             System.out.print("Enter a name for player " + i + ": ");
-            players.add(new Player(sc.nextLine().trim(), deck));
+            players.add(new Player(sc.nextLine().trim()));
         }
 
         // start discard pile with a NUMBER card
@@ -135,7 +135,7 @@ public class UnoFlip {
                     dir = -dir;
                     advance(1);
                 }
-            } else if (t == Card.cardtype.ONE) {
+            } else if (t == Card.cardtype.DRAW_ONE) {
                 int victim = peekNextIndex(1);
                 Card d = deck.drawCard();
                 players.get(victim).addCard(d);

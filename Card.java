@@ -10,16 +10,16 @@ public class Card {
     public enum cardtype{
         NUMBER,
         SKIP,
-        ONE,
+        DRAW_ONE,
         REVERSE,
         FLIP,
         WILD,
         WILDTWO
     }
 
-    public colortype col;
-    public cardtype type;
-    public int rank;
+    private colortype col;
+    private cardtype type;
+    private int rank;
 
     public Card(int color, int type, int rank){
         if(type == 5 || type == 6){
