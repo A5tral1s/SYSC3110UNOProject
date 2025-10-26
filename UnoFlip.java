@@ -77,7 +77,11 @@ public class UnoFlip {
                 System.out.println(cur.getName() + " drew a card: " + d.getDescription());
                 forcedColour = null;
                 advance(1);
+
+                // resultant state
+                printResultantState();
                 continue;
+
             }
 
             // invalid index
@@ -112,6 +116,12 @@ public class UnoFlip {
             System.out.println(cur.getName() + " played a card: " + toPlay.getDescription());
             forcedColour = (toPlay.getType() == Card.cardtype.WILD || toPlay.getType() == Card.cardtype.WILDTWO)
                     ? chosen : null;
+
+            // scoring
+            int gained = points(toPlay);
+            cur.increaseScore(gained);
+            System.out.println(cur.getName() + " gains " + gained + " point(s).  Total: " + cur.getScore());
+
 
             // win condition
             if (cur.getHand().isEmpty()) {
@@ -155,10 +165,41 @@ public class UnoFlip {
             } else {
                 advance(1);
             }
+            printResultantState();
         } // end while(true)
+        //print resultant state
+
+
     } // end play()
 
     // ---- helpers ----
+
+    // Print top discard + next player's cards (ADD THIS)
+    private void printResultantState() {
+        Player next = players.get(turn);
+        System.out.println("Resultant state — Top card: " + topCard.getDescription());
+        System.out.println("Next player: " + next.getName() + " — cards:");
+        List<Card> nh = next.getHand();
+        for (int i = 0; i < nh.size(); i++) {
+            System.out.println((i + 1) + ". " + nh.get(i).getDescription());
+        }
+    }
+
+    // Simple scoring for M1 (ADD THIS)
+    private int points(Card c) {
+        switch (c.getType()) {
+            case NUMBER:    return Math.max(0, c.getRank()); // rank value
+            case SKIP:
+            case REVERSE:
+            case DRAW_ONE:
+                return 20; // if your enum is DRAW_ONE
+            case WILD:
+            case WILDTWO:
+                return 50;
+            default:
+                return 0;
+        }
+    }
 
     private boolean isLegal(Card c, Card.colortype chosenIfWild) {
         if (c.getType() == Card.cardtype.WILD || c.getType() == Card.cardtype.WILDTWO)
