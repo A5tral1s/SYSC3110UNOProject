@@ -36,13 +36,6 @@ public class UnoFlip {
             players.add(new Player(sc.nextLine().trim(), deck));
         }
 
-        // deal remaining cards if any player has < 7
-        for (Player p : players) {
-            while (p.getHand().size() < CARDS_PER_PLAYER) {
-                p.addCard(deck.drawCard());
-            }
-        }
-
         // start discard pile with a NUMBER card
         while (true) {
             Card c = deck.drawCard();
