@@ -14,10 +14,10 @@ Key features implemented:
 - Display of the resultant state after each turn (top discard + next player’s hand)
 
 ## Team Member Contributions
-- Eshal Kashif: Developed `Player.java` — handled player attributes, hand management, scoring updates, and full class documentation. |
+- Eshal Kashif: Developed `Player.java` — handled player attributes, hand management, scoring updates, and full class documentation. 
 - Emma Wong: Created `Deck.java` — implemented card generation, shuffling, draw/discard piles, and reshuffle mechanics. 
 - Anita Gaffuri Kasbiy: Implemented `UnoFlip.java` — managed main game flow, turn logic, input handling, scoring system, and resultant-state output after each turn.
-- Matthew Sanii: Implemented `Card.java` — designed card structure, enums for color and type, and description formatting for display. |
+- Matthew Sanii: Implemented `Card.java` — designed card structure, enums for color and type, and description formatting for display. 
 
 ## Known Issues
 - Input must match prompts exactly (case-sensitive for colors)
