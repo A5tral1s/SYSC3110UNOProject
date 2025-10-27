@@ -233,9 +233,11 @@ public class UnoFlip {
             case NUMBER:    return Math.max(0, c.getRank()); // rank value
             case SKIP:
             case REVERSE:
+                return 20;
             case DRAW_ONE:
-                return 20; // if your enum is DRAW_ONE
+                return 10; // if your enum is DRAW_ONE
             case WILD:
+                return 40;
             case WILDTWO:
                 return 50;
             default:
