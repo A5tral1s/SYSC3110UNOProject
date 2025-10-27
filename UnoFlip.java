@@ -56,13 +56,18 @@ public class UnoFlip {
         while (true) {
             Player cur = players.get(turn);
 
-            System.out.println("------- " + cur.getName() + "'s turn -------");
+            System.out.println("\n------- " + cur.getName() + "'s turn -------");
             System.out.println("Top card: " + topCard.getDescription());
+            List<Card> hand = cur.getHand();
+            /*
             System.out.println("Your cards:");
             List<Card> hand = cur.getHand();
             for (int i = 0; i < hand.size(); i++) {
                 System.out.println((i + 1) + ". " + hand.get(i).getDescription());
             }
+
+            */
+            System.out.println(cur.getHandDescription());
             System.out.print("Enter a card index to play a card, or 0 to draw a card: ");
 
             int choice;
@@ -86,7 +91,7 @@ public class UnoFlip {
                 advance(1);
 
                 // resultant state
-                printResultantState();
+                //printResultantState();
                 continue;
 
             }
@@ -172,7 +177,7 @@ public class UnoFlip {
             } else {
                 advance(1);
             }
-            printResultantState();
+            //printResultantState();
         } // end while(true)
         //print resultant state
 
