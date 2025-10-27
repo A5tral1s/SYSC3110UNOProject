@@ -36,6 +36,13 @@ public class UnoFlip {
             players.add(new Player(sc.nextLine().trim()));
         }
 
+        // Add 7 cards to each player's hand
+        for (Player p : players) {
+            while (p.getHand().size() < CARDS_PER_PLAYER) {
+                p.addCard(deck.drawCard());
+            }
+        }
+
         // start discard pile with a NUMBER card
         while (true) {
             Card c = deck.drawCard();
