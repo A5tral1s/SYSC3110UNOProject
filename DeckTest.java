@@ -14,9 +14,10 @@ class DeckTest {
         for(int i = 0; i < 10; i++){
             firstcards.add(deckOne.drawCard());
         }
-        deckOne.reshuffleDiscards();
+
+        Deck deckTwo = new Deck();
         for(int j = 0; j < 10; j++){
-            secondcards.add(deckOne.drawCard());
+            secondcards.add(deckTwo.drawCard());
         }
         assertNotEquals(firstcards, secondcards);
     }
