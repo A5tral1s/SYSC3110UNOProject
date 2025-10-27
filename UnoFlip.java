@@ -84,7 +84,13 @@ public class UnoFlip {
             Player cur = players.get(turn);
 
             System.out.println("\n------- " + cur.getName() + "'s turn -------");
-            System.out.println("Top card: " + topCard.getDescription());
+            // check whether a colour was forced by a WILD card and display appropriately
+            if(forcedColour != null) {
+                System.out.println("Top card: " + forcedColour + " (from WILD card)");
+            } else {
+                System.out.println("Top card: " + topCard.getDescription());
+            }
+
             List<Card> hand = cur.getHand();
             /*
             System.out.println("Your cards:");
@@ -114,11 +120,9 @@ public class UnoFlip {
                 Card d = deck.drawCard();
                 cur.addCard(d);
                 System.out.println(cur.getName() + " drew a card: " + d.getDescription());
-                forcedColour = null;
+
                 advance(1);
 
-                // resultant state
-                //printResultantState();
                 continue;
 
             }
@@ -153,8 +157,14 @@ public class UnoFlip {
             deck.discard(toPlay);
             topCard = toPlay;
             System.out.println(cur.getName() + " played a card: " + toPlay.getDescription());
-            forcedColour = (toPlay.getType() == Card.cardtype.WILD || toPlay.getType() == Card.cardtype.WILDTWO)
-                    ? chosen : null;
+
+            // set forcedColour for WILD/WILDTWO, clear it for regular cards
+            if (toPlay.getType() == Card.cardtype.WILD || toPlay.getType() == Card.cardtype.WILDTWO) {
+                forcedColour = chosen;
+                System.out.println("Color is now: " + forcedColour);
+            } else {
+                forcedColour = null;
+            }
 
             // scoring
             int gained = points(toPlay);
