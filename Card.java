@@ -49,7 +49,11 @@ public class Card {
         else{
             this.type = cardtype.values()[type];
             this.col = colortype.values()[color];
-            this.rank = rank;
+            if(type == 0){
+                this.rank = rank;
+            } else{
+                this.rank = 0;
+            }
         }
     }
 
