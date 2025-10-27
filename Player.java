@@ -73,11 +73,19 @@ public class Player {
         hand.add(card);
     }
 
+    /**
+     * Remove a card from the player's hand
+     * @param i The index of the card to be removed in the ArrayList
+     * @return The card that was removed
+     */
     public Card removeCard(int i){
         return hand.remove(i-1);
     }
 
-
+    /**
+     * Print a description of all the cards in a player's hand
+     * @return The description as a String
+     */
     public String getHandDescription(){
         StringBuilder sb = new StringBuilder();
         sb.append(name).append("'s cards: ").append("\n");
@@ -87,6 +95,4 @@ public class Player {
         }
         return sb.toString();
     }
-
-
 }
