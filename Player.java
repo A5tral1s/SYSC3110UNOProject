@@ -2,36 +2,73 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
+/**
+ * Class Player - an individual in the UnoFlip game.
+ *
+ * This class is part of the UnoFlip game application.
+ *
+ * A "Player" represents a person in the game. The game keeps
+ * track of 2-4 players as per the guidelines, each with a name,
+ * score, and hand of cards.
+ *
+ * @author Eshal Kashif
+ * @version 1
+ */
 public class Player {
 
     private String name;
     private int score;
     private List<Card> hand;
 
+    /**
+     * Create a Player with a name. Initialize their score to 0
+     * and create an empty ArrayList for their hand.
+     * @param name The player's name
+     */
     public Player(String name){
+        // Ensure the player has a valid name
         if(name==null){
             throw new IllegalArgumentException("Player name cannot be empty.");
         }
         this.name = name;
         score = 0;
         hand = new ArrayList<Card>();
-
     }
 
+    /**
+     * Get the player's name
+     * @return The player's name
+     */
     public String getName(){return name;}
 
+    /**
+     * Get the player's current score
+     * @return The player's score
+     */
     public int getScore(){return score;}
 
-    public int increaseScore(int add){
+    /**
+     * Increment/update the player's score by a certain amount
+     * @param add The amount to increment the player's score by
+     */
+    public void increaseScore(int add){
         if(add < 0){throw new IllegalArgumentException("Score increment must be >= 0");}
         score += add;
-        return score;
     }
 
+    /**
+     * Get an unmodifiable list of the player's current hand/cards
+     * @return The list of cards the player has
+     */
     public List<Card> getHand(){
         return Collections.unmodifiableList(hand);
     }
 
+    /**
+     * Add a card to the player's hand
+     * @param card The card to be added
+     */
     public void addCard(Card card){
         hand.add(card);
     }
@@ -50,17 +87,6 @@ public class Player {
         }
         return sb.toString();
     }
-
-    // DELETE LATER
-    /*
-    public static void main(String[] args) {
-        Deck d = new Deck();
-        Player p1 = new Player("me", d);
-        System.out.println(p1.getHandDescription());
-    }
-    */
-
-
 
 
 }
