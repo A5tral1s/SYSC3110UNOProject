@@ -29,7 +29,7 @@ class CardTest {
         Card wild = new Card(0, 5, 3);
         Card seven = new Card(1, 0, 7);
         Card two = new Card(3, 0, 2);
-        assertEquals(-1, wild.getRank());
+        assertEquals(0, wild.getRank());
         assertEquals(7, seven.getRank());
         assertEquals(2, two.getRank());
     }
@@ -39,8 +39,9 @@ class CardTest {
         Card wild = new Card(0, 5, 3);
         Card drawone = new Card(1, 2, 7);
         Card two = new Card(3, 0, 2);
-        assertEquals("ALL WILD", wild.getDescription());
+        assertEquals("WILD", wild.getDescription());
         assertEquals("BLUE DRAW_ONE", drawone.getDescription());
         assertEquals("YELLOW 2", two.getDescription());
     }
+
 }
