@@ -2,6 +2,18 @@ import java.util.ArrayList;
 import java.util.Collections; 
 import java.util.ArrayDeque;
 
+/**
+ * Class Deck - a deck of UNO cards
+ * 
+ * This class is part of the UnoFlip game application.
+ * 
+ * A "Deck" represents a deck of UNO cards including a draw pile and discard pile.
+ * It contains numbered cards (1 to 9) and special action cards (SKIP, ONE, REVERSE)
+ * in four colours (RED, BLUE, GREEN, YELLOW), as well as wild cards (WILD, WILDTWO).
+ * 
+ * @author Emma Wong
+ * @version 1
+ */
 public class Deck {
     private ArrayList<Card> cards;   // cards where you draw from
     private ArrayDeque<Card> discards;   // cards that have already been played
@@ -23,6 +35,10 @@ public class Deck {
     public static final int WILDTWO_TYPE = 6;
     public static final int NO_RANK = -1;
 
+    /**
+     * Deck() contructs a new Deck with a full set of UNO cards.
+     * The deck is created and shuffled when constructed.
+     */
     public Deck(){
         cards = new ArrayList<>();
         discards = new ArrayDeque<>();
@@ -31,7 +47,15 @@ public class Deck {
         shuffle();
     }
 
-    //Build the full deck of cards.
+    /**
+     * Builds the full deck of cards.
+     * Creates:
+     * - 2 copies of numbered cards (1 to 9) for each of colour 
+     * - 2 copies of SKIP, ONE, and REVERSE cards for each colour
+     * - 4 WILD cards
+     * - 4 WILDTWO cards
+     * Total: 104 cards
+     */
     private void createDeck(){
 
         // for each colour
@@ -56,12 +80,18 @@ public class Deck {
         }
     }
 
-    //Shuffle the deck of cards.
+    /**
+     * Shuffles the deck of cards randomly.
+     */
     public void shuffle(){
         Collections.shuffle(cards);
     }
 
-    //When the deck of cards runs out, reshuffle discards to refill the deck.
+    /**
+     * Reshuffles the discard pile back into the draw pile when the draw pile is empty.
+     * The top card of the discard pile is saved to remain at the top of the discards after reshuffle.
+     * All the other cards from the discard pile are moved to the draw pile and shuffled.
+     */
     private void reshuffleDiscards(){
         // save the top card
         Card topCard = discards.pop();
@@ -72,7 +102,13 @@ public class Deck {
         shuffle();
     }
 
-    //Draws a card from the deck of cards.
+    /**
+     * Draw a card from the top of the draw pile.
+     * If the draw pile is empty, reshuffle the discard pile to refill 
+     * the draw pile before drawing a card.
+     * 
+     * @return The card drawn from the top of the draw pile
+     */
     public Card drawCard(){
         if(cards.isEmpty()){
             reshuffleDiscards();
@@ -81,12 +117,21 @@ public class Deck {
 
     }
 
-    //Adds a card to the pile of discards.
+    /**
+     * Adds a card to the top of the discard pile.
+     * 
+     * @param card The card to add to the discard pile
+     */
     public void discard(Card card){
         discards.push(card);
     }
 
-    //Return the top card of the discard pile (the currently played card).
+    /**
+     * Returns the top card of the discard pile without removing it.
+     * This represent the last played card that the other players must match,
+     * 
+     * @return The card at the top of the discard pile or null if empty.
+     */
     public Card topCard(){
         return discards.peek();
     }
