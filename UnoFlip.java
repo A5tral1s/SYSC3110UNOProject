@@ -1,5 +1,27 @@
 import java.util.*;
-
+/**
+ * Class UnoFlip - the main game logic and controller for the Uno Flip game.*
+ * This class is part of the Uno Flip game application.
+ *
+ * The "UnoFlip" class manages the setup and flow of the game, including
+ * initializing players, dealing cards, enforcing turn order, handling
+ * action cards, tracking scores, and determining when the game ends.
+ *
+ * It follows standard Uno rules, allowing 2–4 players. The class interacts
+ * with the Deck, Card, and Player classes to manage gameplay state.
+ *
+ * Core responsibilities:
+ *  - Prompt for player count and names
+ *  - Deal initial hands and initialize the discard pile
+ *  - Run the main game loop where players take turns
+ *  - Validate moves through the isLegal() method
+ *  - Handle special cards like SKIP, REVERSE, DRAW_ONE, WILD, and WILDTWO
+ *  - Track scores for each player
+ *  - Display the resultant state after each turn
+ *
+ * @author Anita Gaffuri Kasbiy
+ * @version 1.0
+ */
 public class UnoFlip {
 
     private static final int CARDS_PER_PLAYER = 7;
@@ -14,6 +36,11 @@ public class UnoFlip {
     private int dir = +1;                    // +1 clockwise, -1 counterclockwise
     private Card.colortype forcedColour;     // active colour after Wild
     private Card topCard;                    // top of discard pile
+    /**
+     * Starts and runs the Uno Flip game.
+     * This method initializes the players, sets up the discard pile,
+     * and runs the main game loop until a player wins.
+     */
 
     public void play() {
         System.out.println("-------------- UNO FLIP --------------");
@@ -179,9 +206,11 @@ public class UnoFlip {
 
     } // end play()
 
-    // ---- helpers ----
 
-    // Print top discard + next player's cards (ADD THIS)
+    /**
+     * Prints the current top card and the next player's cards.
+     * Called after each turn to display the resultant game state.
+     */
     private void printResultantState() {
         Player next = players.get(turn);
         System.out.println("Resultant state — Top card: " + topCard.getDescription());
@@ -191,8 +220,12 @@ public class UnoFlip {
             System.out.println((i + 1) + ". " + nh.get(i).getDescription());
         }
     }
-
-    // Simple scoring for M1 (ADD THIS)
+    /**
+     * Calculates and returns the number of points a played card is worth.
+     *
+     * @param c The card that was just played.
+     * @return The point value of the card (used for scoring).
+     */
     private int points(Card c) {
         switch (c.getType()) {
             case NUMBER:    return Math.max(0, c.getRank()); // rank value
@@ -207,7 +240,14 @@ public class UnoFlip {
                 return 0;
         }
     }
-
+    /**
+     * Determines if a given card can be legally played
+     * on top of the current discard card based on Uno rules.
+     *
+     * @param c The card the player wants to play.
+     * @param chosenIfWild The colour chosen if the card is a WILD or WILDTWO.
+     * @return true if the card can be legally played, false otherwise.
+     */
     private boolean isLegal(Card c, Card.colortype chosenIfWild) {
         if (c.getType() == Card.cardtype.WILD || c.getType() == Card.cardtype.WILDTWO)
             return chosenIfWild != null && chosenIfWild != Card.colortype.ALL;
@@ -221,20 +261,34 @@ public class UnoFlip {
                 c.getType() == topCard.getType());
         return colourMatch || numberMatch || actionMatch;
     }
-
-    // move turn pointer
+    /**
+     * Advances the turn index by a certain number of steps in the current direction.
+     * Handles wrapping around when reaching the end of the player list.
+     *
+     * @param steps Number of player turns to advance.
+     */
     private void advance(int steps) {
         int n = players.size();
         turn = ((turn + steps * dir) % n + n) % n;
     }
-
-    // look ahead without moving turn
+    /**
+     * Returns the index of the next player without changing the current turn.
+     *
+     * @param steps Number of turns ahead to peek.
+     * @return The index of the next player in sequence.
+     */
     private int peekNextIndex(int steps) {
         int n = players.size();
         return ((turn + steps * dir) % n + n) % n;
     }
 
-    // parse colour text
+    /**
+     * Parses a colour input string and returns the corresponding enum value.
+     * Used when a player plays a WILD or WILDTWO card.
+     *
+     * @param s The user’s input string for colour.
+     * @return The matching Card.colortype, or null if invalid.
+     */
     private Card.colortype parseColour(String s) {
         s = s.toUpperCase(Locale.ROOT).trim();
         switch (s) {
@@ -245,7 +299,10 @@ public class UnoFlip {
             default:       return null;
         }
     }
-
+    /**
+     * Main method - creates a new UnoFlip instance and starts the game.
+     * @param args Command-line arguments (not used)
+     */
     public static void main(String[] args) {
         new UnoFlip().play();
     }
