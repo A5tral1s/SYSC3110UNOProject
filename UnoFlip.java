@@ -29,19 +29,22 @@ public class UnoFlip {
     private static final int MAX_PLAYERS = 4;
 
     private final List<Player> players = new ArrayList<>();
-    private final Scanner sc = new Scanner(System.in);
+    private final Scanner sc;
     private final Deck deck = new Deck();
 
     private int turn = 0;                    // current player's index
     private int dir = +1;                    // +1 clockwise, -1 counterclockwise
     private Card.colortype forcedColour;     // active colour after Wild
-    //private Card topCard;                    // top of discard pile
+
+    public UnoFlip(Scanner sc){
+        this.sc = sc;
+    }
+
     /**
      * Starts and runs the Uno Flip game.
      * This method initializes the players, sets up the discard pile,
      * and runs the main game loop until a player wins.
      */
-
     public void play() {
         System.out.println("-------------- UNO FLIP --------------");
 
@@ -74,7 +77,6 @@ public class UnoFlip {
         while (true) {
             Card c = deck.drawCard();
             deck.discard(c);
-          //  topCard = c;
             if (c.getType() == Card.cardtype.NUMBER) break;
         }
         forcedColour = null;
@@ -216,11 +218,7 @@ public class UnoFlip {
             } else {
                 advance(1);
             }
-            //printResultantState();
         } // end while(true)
-        //print resultant state
-
-
     } // end play()
 
 
@@ -308,6 +306,7 @@ public class UnoFlip {
      * @param args Command-line arguments (not used)
      */
     public static void main(String[] args) {
-        new UnoFlip().play();
+        Scanner sc = new Scanner(System.in);
+        new UnoFlip(sc).play();
     }
 }
