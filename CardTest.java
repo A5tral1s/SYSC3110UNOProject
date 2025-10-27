@@ -6,6 +6,7 @@ class CardTest {
 
     @Test
     void getColor() {
+        //Testing that Card properly returns the color of wild, and a color card.
         Card wild = new Card(0, 5, 3);
         Card blue = new Card(1, 0, 7);
         Card yellow = new Card(3, 2, 3);
@@ -16,6 +17,7 @@ class CardTest {
 
     @Test
     void getType() {
+        //Testing that Card properly returns the type of a wild, number, and draw one card.
         Card wild = new Card(0, 5, 3);
         Card number = new Card(1, 0, 7);
         Card drawone = new Card(3, 2, 3);
@@ -26,6 +28,7 @@ class CardTest {
 
     @Test
     void getRank() {
+        //Testing that Card properly returns the rank of a wild card, and two number cards.
         Card wild = new Card(0, 5, 3);
         Card seven = new Card(1, 0, 7);
         Card two = new Card(3, 0, 2);
@@ -36,6 +39,7 @@ class CardTest {
 
     @Test
     void getDescription() {
+        //Testing that the description of each card matches what is expected.
         Card wild = new Card(0, 5, 3);
         Card drawone = new Card(1, 2, 7);
         Card two = new Card(3, 0, 2);
@@ -45,3 +49,4 @@ class CardTest {
     }
 
 }
+
