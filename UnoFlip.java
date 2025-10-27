@@ -223,19 +223,6 @@ public class UnoFlip {
 
 
     /**
-     * Prints the current top card and the next player's cards.
-     * Called after each turn to display the resultant game state.
-     */
-    private void printResultantState() {
-        Player next = players.get(turn);
-        System.out.println("Resultant state — Top card: " + topCard.getDescription());
-        System.out.println("Next player: " + next.getName() + " — cards:");
-        List<Card> nh = next.getHand();
-        for (int i = 0; i < nh.size(); i++) {
-            System.out.println((i + 1) + ". " + nh.get(i).getDescription());
-        }
-    }
-    /**
      * Calculates and returns the number of points a played card is worth.
      *
      * @param c The card that was just played.
