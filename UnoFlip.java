@@ -35,7 +35,7 @@ public class UnoFlip {
     private int turn = 0;                    // current player's index
     private int dir = +1;                    // +1 clockwise, -1 counterclockwise
     private Card.colortype forcedColour;     // active colour after Wild
-    private Card topCard;                    // top of discard pile
+    //private Card topCard;                    // top of discard pile
     /**
      * Starts and runs the Uno Flip game.
      * This method initializes the players, sets up the discard pile,
@@ -74,7 +74,7 @@ public class UnoFlip {
         while (true) {
             Card c = deck.drawCard();
             deck.discard(c);
-            topCard = c;
+          //  topCard = c;
             if (c.getType() == Card.cardtype.NUMBER) break;
         }
         forcedColour = null;
@@ -82,8 +82,10 @@ public class UnoFlip {
         // game loop
         while (true) {
             Player cur = players.get(turn);
+            Card topCard = deck.topCard();  // get current top card from deck
 
             System.out.println("\n------- " + cur.getName() + "'s turn -------");
+
             // check whether a colour was forced by a WILD card and display appropriately
             if(forcedColour != null) {
                 System.out.println("Top card: " + forcedColour + " (from WILD card)");
@@ -147,7 +149,7 @@ public class UnoFlip {
             }
 
             // validate placement
-            if (!isLegal(toPlay, chosen)) {
+            if (!isLegal(toPlay, chosen, topCard)) {
                 System.out.println("Placing that card is not a valid move. Try again.");
                 continue;
             }
@@ -155,7 +157,7 @@ public class UnoFlip {
             // play the card
             cur.removeCard(choice);
             deck.discard(toPlay);
-            topCard = toPlay;
+           // topCard = toPlay;
             System.out.println(cur.getName() + " played a card: " + toPlay.getDescription());
 
             // set forcedColour for WILD/WILDTWO, clear it for regular cards
@@ -250,7 +252,7 @@ public class UnoFlip {
      * @param chosenIfWild The colour chosen if the card is a WILD or WILDTWO.
      * @return true if the card can be legally played, false otherwise.
      */
-    private boolean isLegal(Card c, Card.colortype chosenIfWild) {
+    private boolean isLegal(Card c, Card.colortype chosenIfWild, Card topCard) {
         if (c.getType() == Card.cardtype.WILD || c.getType() == Card.cardtype.WILDTWO)
             return chosenIfWild != null && chosenIfWild != Card.colortype.ALL;
 
