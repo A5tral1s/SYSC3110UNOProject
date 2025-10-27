@@ -2,11 +2,21 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+/**
+* Tests the functionality of the Card class.
+* This test suite makes sure all public methods in the Card Class return the proper data.
+*
+*/
 class CardTest {
 
+    /**
+    * Verifies that the getColor method correctly returns the card's color.
+    *
+    * @return The card's color
+    */
     @Test
     void getColor() {
-        //Testing that Card properly returns the color of wild, and a color card.
         Card wild = new Card(0, 5, 3);
         Card blue = new Card(1, 0, 7);
         Card yellow = new Card(3, 2, 3);
@@ -15,9 +25,13 @@ class CardTest {
         assertEquals(Card.colortype.YELLOW, yellow.getColor());
     }
 
+    /**
+    * Verifies that the getType method correctly returns the card's type.
+    *
+    * @return The card's type
+    */
     @Test
     void getType() {
-        //Testing that Card properly returns the type of a wild, number, and draw one card.
         Card wild = new Card(0, 5, 3);
         Card number = new Card(1, 0, 7);
         Card drawone = new Card(3, 2, 3);
@@ -26,9 +40,13 @@ class CardTest {
         assertEquals(Card.cardtype.DRAW_ONE, drawone.getType());
     }
 
+    /**
+    * Verifies that the getRank method correctly returns the card's rank.
+    *
+    * @return The card's rank
+    */
     @Test
     void getRank() {
-        //Testing that Card properly returns the rank of a wild card, and two number cards.
         Card wild = new Card(0, 5, 3);
         Card seven = new Card(1, 0, 7);
         Card two = new Card(3, 0, 2);
@@ -37,9 +55,13 @@ class CardTest {
         assertEquals(2, two.getRank());
     }
 
+    /**
+    * Verifies that the getDescription method correctly returns a description of the card.
+    *
+    * @return The card's description.
+    */
     @Test
     void getDescription() {
-        //Testing that the description of each card matches what is expected.
         Card wild = new Card(0, 5, 3);
         Card drawone = new Card(1, 2, 7);
         Card two = new Card(3, 0, 2);
@@ -49,4 +71,5 @@ class CardTest {
     }
 
 }
+
 
