@@ -81,12 +81,21 @@ public class Card {
     * @return The description of the card as a String
     */
     public String getDescription(){
-        if(this.getRank()==Deck.NO_RANK){
-            return this.getColor() +  " " + this.getType();
+        // Handle wilds first
+        if (this.type == cardtype.WILD) {
+            return "WILD";
         }
-        return this.getColor() +  " " + this.getRank();
+        if (this.type == cardtype.WILDTWO) {
+            return "WILD DRAW TWO";
+        }
+
+        // Handle action cards (SKIP, DRAW_ONE, REVERSE, FLIP)
+        if (this.rank == Deck.NO_RANK) {
+            return this.col + " " + this.type;
+        }
+
+        // Handle regular number cards (e.g., RED 5)
+        return this.col + " " + this.rank;
     }
-
-
 
 }
