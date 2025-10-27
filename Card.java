@@ -44,6 +44,7 @@ public class Card {
         if(type == 5 || type == 6){ //If card type is one of the two Wild cards, set 'color' to ALL
             this.type = cardtype.values()[type];
             this.col = colortype.values()[4];
+            this.rank = 0;
         }
         else{
             this.type = cardtype.values()[type];
@@ -90,7 +91,7 @@ public class Card {
         }
 
         // Handle action cards (SKIP, DRAW_ONE, REVERSE, FLIP)
-        if (this.rank == Deck.NO_RANK) {
+        if (this.rank == 0) {
             return this.col + " " + this.type;
         }
 
