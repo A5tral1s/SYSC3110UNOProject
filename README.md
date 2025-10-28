@@ -15,7 +15,7 @@ Key features implemented:
 
 ## Team Member Contributions
 - Eshal Kashif: Developed `Player.java` — handled player attributes, hand management, scoring updates, and full class documentation. Implemented methods for test classes PlayerTest.java and DeckTest.java with full documentation. Illustrated the UML diagram to show representation between main classes. 
-- Emma Wong: Created `Deck.java` — implemented card generation, shuffling, draw/discard piles, and reshuffle mechanics. 
+- Emma Wong: Created `Deck.java` — implemented card generation, shuffling, draw/discard piles, and reshuffle mechanics. Implemented test class UnoFlipTest.java. Illustrated the all sequence diagrams to represent events.
 - Anita Gaffuri Kasbiy: Implemented `UnoFlip.java` — managed main game flow, turn logic, input handling, scoring system, and resultant-state output after each turn.
 - Matthew Sanii: Implemented `Card.java` — designed card structure, enums for color and type, and description formatting for display.
 
