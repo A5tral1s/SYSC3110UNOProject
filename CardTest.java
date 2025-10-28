@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -7,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 * Tests the functionality of the Card class.
 * This test suite makes sure all public methods in the Card Class
  * return the proper data.
-*
+ *
+ * @author Matthew Sanii
+ * @version 1
 */
 class CardTest {
 

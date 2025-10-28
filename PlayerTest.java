@@ -1,12 +1,19 @@
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests the functionality of the Player class.
+ * This test suite makes sure all public methods in the Player Class
+ * return the proper data.
+ *
+ * @author Eshal Kashif
+ * @version 1
+ */
 class PlayerTest {
 
+    /**
+     * Verifies that the getName() method returns the correct name
+     */
     @Test
     void getName() {
         Player one = new Player("One");
@@ -15,6 +22,9 @@ class PlayerTest {
         assertEquals("Steve", two.getName());
     }
 
+    /**
+     * Verifies that the getScore() method returns the correct score after incrementing
+     */
     @Test
     void getScore() {
         Player one = new Player("One");
@@ -23,26 +33,37 @@ class PlayerTest {
         assertEquals(20, one.getScore());
     }
 
+    /**
+     * Verifies that the addCard() method correctly adds a card to the player's hand
+     */
     @Test
     void addCard() {
-        Player one = new Player("one");
-        List<Card> e = new ArrayList<Card>();
-        assertEquals(e, one.getHand());
-        one.addCard(new Card(0, 6, 2));
-        e.add(new Card(3, 2, 3));
-        assertNotEquals(e, one.getHand());
+        Player p = new Player("one");
+        assertEquals(0, p.getHand().size());
+        Card c = new Card(0, Deck.NUMBER_TYPE, 7);
+        p.addCard(c);
+        assertEquals(1, p.getHand().size());
+        assertSame(c, p.getHand().get(0)); // identity check; Card has no equals()
     }
 
+    /**
+     * Verifies that a card is correctly removed from a player's hand
+     */
     @Test
     void removeCard() {
-        Player one = new Player("one");
-        List<Card> e = new ArrayList<Card>();
-        Card toremove = new Card(0, 6,2);
-        one.addCard(toremove);
-        e.add(one.removeCard(1));
-        assertEquals(e.get(0), toremove);
+        Player p = new Player("one");
+        Card c = new Card(0, Deck.WILDTWO_TYPE, Deck.NO_RANK); // any card is fine
+        p.addCard(c);
+        assertEquals(1, p.getHand().size());
+
+        Card removed = p.removeCard(1); // 1-based index per your API
+        assertSame(c, removed);
+        assertEquals(0, p.getHand().size());
     }
 
+    /**
+     * Verifies a correct description is returned of the player's hand
+     */
     @Test
     void getHandDescription() {
         Player one = new Player("one");
@@ -57,5 +78,31 @@ class PlayerTest {
         sb.append("1: ").append(first.getDescription()).append("\n");
         sb.append("2: ").append(second.getDescription()).append("\n");
         assertEquals(sb.toString(), one.getHandDescription());
+    }
+
+    /**
+     * Ensures you can't increase score by negative value
+     */
+    @Test
+    void increaseScoreRejectsNegative() {
+        Player p = new Player("one");
+        assertThrows(IllegalArgumentException.class, () -> p.increaseScore(-1));
+    }
+
+    /**
+     * Ensures null names cannot be passed in Player constructor
+     */
+    @Test
+    void constructorRejectsNullName() {
+        assertThrows(IllegalArgumentException.class, () -> new Player(null));
+    }
+
+    /**
+     * Ensure an invalid index cannot be used to remove a card
+     */
+    @Test
+    void removeCardOutOfBounds() {
+        Player p = new Player("one");
+        assertThrows(IndexOutOfBoundsException.class, () -> p.removeCard(1)); // empty hand
     }
 }
