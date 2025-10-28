@@ -21,17 +21,17 @@ Key features implemented:
 
 ## Class Descriptions & Explanations
 
-# Card.java
+### Card.java
 - Responsibility. Represent a single card’s immutable attributes: color, type, rank; provide a human-readable description used by the console UI.
 - Uses enums (colortype and cardtype) to represent card attributes effectively
 
-# Deck.java
+### Deck.java
 - Responsibility. Build and manage the draw pile and the discard pile (the discard and draw pile make up the deck, hence why they are in the same class), shuffle, draw, and expose the current top discard.
 
-# Player.java
+### Player.java
 - Responsibility. Track a player’s identity, score, and hand.
 
-# UnoFlip.java
+### UnoFlip.java
 - Responsibility. Orchestrate the entire game loop: setup, turn management, reading keyboard input, placement validation, action card effects, scoring, and printing the resultant state.
 
 ## Future Work (M2+)
