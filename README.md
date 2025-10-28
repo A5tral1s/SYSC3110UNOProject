@@ -14,12 +14,26 @@ Key features implemented:
 - Display of the resultant state after each turn (top discard + next player’s hand)
 
 ## Team Member Contributions
-- Eshal Kashif: Developed `Player.java` — handled player attributes, hand management, scoring updates, and full class documentation. 
+- Eshal Kashif: Developed `Player.java` — handled player attributes, hand management, scoring updates, and full class documentation. Implemented methods for test classes PlayerTest.java and DeckTest.java with full documentation. Illustrated the UML diagram to show representation between main classes. 
 - Emma Wong: Created `Deck.java` — implemented card generation, shuffling, draw/discard piles, and reshuffle mechanics. 
 - Anita Gaffuri Kasbiy: Implemented `UnoFlip.java` — managed main game flow, turn logic, input handling, scoring system, and resultant-state output after each turn.
-- Matthew Sanii: Implemented `Card.java` — designed card structure, enums for color and type, and description formatting for display. 
+- Matthew Sanii: Implemented `Card.java` — designed card structure, enums for color and type, and description formatting for display.
 
-## Known Issues
-- Input must match prompts exactly (case-sensitive for colors)
-- GUI and Flip-side (dark deck) functionality not yet implemented
-- Scores reset between sessions (no persistent storage)
+## Class Descriptions & Explanations
+
+# Card.java
+- Responsibility. Represent a single card’s immutable attributes: color, type, rank; provide a human-readable description used by the console UI.
+- Uses enums (colortype and cardtype) to represent card attributes effectively
+
+# Deck.java
+- Responsibility. Build and manage the draw pile and the discard pile (the discard and draw pile make up the deck, hence why they are in the same class), shuffle, draw, and expose the current top discard.
+
+# Player.java
+- Responsibility. Track a player’s identity, score, and hand.
+
+# UnoFlip.java
+- Responsibility. Orchestrate the entire game loop: setup, turn management, reading keyboard input, placement validation, action card effects, scoring, and printing the resultant state.
+
+## Future Work (M2+)
+- Implement Flip functionality (lightside and darkside of cards)
+- GUI, implement MVC
